@@ -10,7 +10,12 @@ DISCONNECT_MESSAGE = "!DISCONNECT"
 
 def connect():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect(ADDR)
+    try:
+        client.connect(ADDR)
+        print("Connected")
+    except ConnectionRefusedError as e:
+        print(e)
+        return None
     return client
 
 
